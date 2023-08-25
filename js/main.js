@@ -271,15 +271,24 @@
     });
   }
 
-//   function loadPricingItemContent(formId) {
-//     $.ajax({
-//         url: $('.ajax-form[data-id="' + formId + '"]').attr('href'),
-//         type: 'GET',
-//         success: function (html) {
-//             var getHtml = $(html)
-//         }
-//     })
-//   }
+  function loadPricingItemContent(formId) {
+    $.ajax({
+        url: $('.ajax-form[data-id="' + formId + '"]').attr('href'),
+        type: 'GET',
+        success: function (html) {
+            var getHtml = $(html).find(".form-pricing-wrapper").html();
+            $('.pricing-load-content-holder').append('<div id="fcw' + formId + '" class="form-pricing-content-wrapper">' + getHtml + '</div>');
+            if (!$("#fcw-" + formId + " .close-icon").length) {
+                $("#mcw-" + formId).prepend('<div class="close-icon"></div>');
+            }
+            $('html, body').animate({scrollTop: $('.one_half').offset().top - 150}, 400);
+          setTimeout(function () {
+
+          })
+
+        }
+    })
+  }
 
   function memberContentLoadOnClick() {
     $(".ajax-member-content").on("click", function (e) {
