@@ -9,6 +9,8 @@
   memberContentLoadOnClick();
   //Portfolio Item Load
   portfolioItemContentLoadOnClick();
+  // form
+  priceItemLoadOnClick() 
   //PrettyPhoto initial
   setPrettyPhoto();
   //Send Mail
@@ -246,49 +248,115 @@
       });
   }
 
-    function priceItemContentLoadOnClick() {
-      $(".ajax-pricing-form").on("click", function (e) {
-        e.preventDefault();
-        var formId = $(this).data("id");
-        $(this).addClass("animate-plus");
+  function priceItemLoadOnClick() {
+    $(".ajak-pricing").on("click", function (e) {
+      e.preventDefault();
+      var formId = $(this).data("id");
+      $(this).addClass("animate-plus");
+      if ($("#fcw" + formId).length) {
         $("html, body").animate(
-          { scrollTop: $(".one_half").offset().top - 120 },
-          300
+          { scrollTop: $("#pricing-wrapper").offset().top - 150 },
+          400
         );
-        if ($("#fcw-" + formId).length) {
+        setTimeout(function () {
+          $("#pricing-grid").addClass("hide");
           setTimeout(function () {
-            $(".pricing-table").addClass("hide").fadeOut();
+            $("#fcw" + formId).addClass("show");
+            $(".pricing-load-content-holder").addClass("show");
+            $(".ajax-pricing").removeClass("animate-plus");
+            $("#pricing-grid").hide();
+          }, 300);
+        }, 500);
+      } else {
+        loadPricingItemContent(formId);
+      }
+    });
+  }
+
+  function loadPricingItemContent(formId) {
+    $.ajax({
+      url: $('.ajax-pricing[data-id="' + formId + '"]').attr("href"),
+      type: "GET",
+      success: function (html) {
+        var getFormHTML = $(html).find(".pricing").html();
+        $(".pricing-load-content-holder").append(
+          '<div id="fcw' +
+            formId +
+            '" class="pricing-content-wrapper">' +
+            getFormHTML +
+            "</div>"
+        );
+        if (!$("#fcw" + formId + " .close-icon").length) {
+          $("#fcw-" + formId).prepend('<div class="close-icon"></div>');
+        }
+        $("html, body").animate(
+          { scrollTop: $("#pricing-wrapper").offset().top - 150 },
+          400
+        );
+        setTimeout(function () {
+          $("#fcw-" + formId).imagesLoaded(function () {
+            skillsFill();
+            imageSliderSettings();
+            $(".site-content").fitVids();
+            $("#pricing-grid").addClass("hide");
             setTimeout(function () {
               $("#fcw-" + formId).addClass("show");
               $(".pricing-load-content-holder").addClass("show");
-              $(".ajax-form").removeClass("animate-plus");
-              $("#pricing-table").hide();
+              $(".ajax-pricing").removeClass("animate-plus");
+              $("#pricing-grid").hide();
             }, 300);
-          }, 500);
-        } else {
-          loadPricingItemContent(formId);
+            $(".close-icon").on("click", function (e) {
+              var formReturnItemID = $(this)
+                .closest(".pricing-content-wrapper")
+                .attr("id")
+                .split("-")[1];
+              $(".pricing-load-content-holder").addClass("viceversa");
+              $("#pricing-grid").css("display", "block");
+              setTimeout(function () {
+                $("#fcw" + formReturnItemID).removeClass("show");
+                $(".pricing-load-content-holder").removeClass("viceversa show");
+                $("#pricing-grid").removeClass("hide");
+              }, 300);
+              setTimeout(function () {
+                $("html, body").animate(
+                  {
+                    scrollTop:
+                      $("#price-label" + formReturnItemID).offset().top - 150,
+                  },
+                  400
+                );
+              }, 500);
+            });
+          });
+        }, 500);
+      },
+    });
+  }
+
+  function loadPricingItemContent(formId) {
+    $.ajax({
+      url: $('.ajax-form[data-id="' + formId + '"]').attr("href"),
+      type: "GET",
+      success: function (html) {
+        var getHtml = $(html).find(".form-pricing-wrapper").html();
+        $(".pricing-load-content-holder").append(
+          '<div id="fcw' +
+            formId +
+            '" class="form-pricing-content-wrapper">' +
+            getHtml +
+            "</div>"
+        );
+        if (!$("#fcw-" + formId + " .close-icon").length) {
+          $("#mcw-" + formId).prepend('<div class="close-icon"></div>');
         }
-      });
-    }
-
-    function loadPricingItemContent(formId) {
-      $.ajax({
-          url: $('.ajax-form[data-id="' + formId + '"]').attr('href'),
-          type: 'GET',
-          success: function (html) {
-              var getHtml = $(html).find(".form-pricing-wrapper").html();
-              $('.pricing-load-content-holder').append('<div id="fcw' + formId + '" class="form-pricing-content-wrapper">' + getHtml + '</div>');
-              if (!$("#fcw-" + formId + " .close-icon").length) {
-                  $("#mcw-" + formId).prepend('<div class="close-icon"></div>');
-              }
-              $('html, body').animate({scrollTop: $('.one_half').offset().top - 150}, 400);
-            setTimeout(function () {
-
-            })
-
-          }
-      })
-    }
+        $("html, body").animate(
+          { scrollTop: $(".one_half").offset().top - 150 },
+          400
+        );
+        setTimeout(function () {});
+      },
+    });
+  }
 
   function memberContentLoadOnClick() {
     $(".ajax-member-content").on("click", function (e) {
