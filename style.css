@@ -1249,7 +1249,7 @@ body .sm-clean li.current_page_item > a {
 }
 
 .form-pricing-content-wrapper {
-  display: none;
+  display: block;
 }
 
 .form-pricing-content-wrapper.show {

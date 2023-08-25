@@ -11,6 +11,7 @@
   portfolioItemContentLoadOnClick();
   //PrettyPhoto initial
   setPrettyPhoto();
+  priceItemContentLoadOnClick()
   //Send Mail
   $('.contact-us [type="submit"]').on("click", function () {
     SendMail();
@@ -252,12 +253,12 @@
         var formId = $(this).data("id");
         $(this).addClass("animate-plus");
         $("html, body").animate(
-          { scrollTop: $(".one_half").offset().top - 120 },
+          { scrollTop: $("#pricing").offset().top - 120 },
           300
         );
         if ($("#fcw-" + formId).length) {
           setTimeout(function () {
-            $(".pricing-table").addClass("hide").fadeOut();
+            $(".form-pricing-wrapper").addClass("hide").fadeOut();
             setTimeout(function () {
               $("#fcw-" + formId).addClass("show");
               $(".pricing-load-content-holder").addClass("show");
@@ -277,15 +278,25 @@
           type: 'GET',
           success: function (html) {
               var getHtml = $(html).find(".form-pricing-wrapper").html();
-              $('.pricing-load-content-holder').append('<div id="fcw' + formId + '" class="form-pricing-content-wrapper">' + getHtml + '</div>');
+              $(".pricing-load-content-holder").append(
+                '<div id="fcw-' +
+                  formId +
+                  '" class="form-pricing-content-wrapper">' +
+                  getHtml +
+                  "</div>"
+              );
               if (!$("#fcw-" + formId + " .close-icon").length) {
-                  $("#mcw-" + formId).prepend('<div class="close-icon"></div>');
+                $("#fcw-" + formId).prepend('<div class="close-icon"></div>');
               }
-              $('html, body').animate({scrollTop: $('.one_half').offset().top - 150}, 400);
-            setTimeout(function () {
-
-            })
-
+              $("html, body").animate(
+                { scrollTop: $("#pricing").offset().top - 150 },
+                400
+              );
+              setTimeout(function () {
+                $("#fcw-" + formId).imagesLoaded(function () {
+                  $(".price-content").addClass("hide").fadeOut();
+                });
+              });
           }
       })
     }
@@ -320,6 +331,7 @@
       url: $('.ajax-member-content[data-id="' + memberID + '"]').attr("href"),
       type: "GET",
       success: function (html) {
+        console.log("asdasdsa", memberID);
         var getHtml = $(html).find(".member-item-wrapper").html();
         $(".team-load-content-holder").append(
           '<div id="mcw-' +
