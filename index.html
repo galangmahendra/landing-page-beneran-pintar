@@ -86,10 +86,10 @@
 
       <div id="content" class="site-content center-relative">
         <div class="video-box">
-        <video autoplay loop muted class="back-video">
-          <source src="images/background_video.mp4" type="video/mp4" />
-        </video>
-    </div>
+          <video autoplay loop muted class="back-video">
+            <source src="images/background_video.mp4" type="video/mp4" />
+          </video>
+        </div>
         <!-- Home -->
         <div id="home" class="full-screen full-width">
           <div class="section-wrapper block content-1170 center-relative">
@@ -242,7 +242,7 @@
                         href="portfolio-1.html"
                         data-id="1"
                       >
-                        <img src="images/muhammad.png" alt="" />
+                        <img src="images/muhammad_background.png" alt="" />
                         <div class="portfolio-text-holder">
                           <p class="portfolio-title" style="font-size: 12px">
                             Muhammad Nur Widianto, S.Sos.
@@ -263,7 +263,7 @@
                         href="portfolio-2.html"
                         data-id="2"
                       >
-                        <img src="images/sherlitabg.png" alt="" />
+                        <img src="images/sherlita_background.png" alt="" />
                         <div class="portfolio-text-holder">
                           <p class="portfolio-title" style="font-size: 12px">
                             Sherlita Ratna Dewi A, S.Si., M.I.P.
@@ -285,7 +285,7 @@
                         href="portfolio-3.html"
                         data-id="3"
                       >
-                        <img src="images/sribg.png" alt="" />
+                        <img src="images/sri_background.png" alt="" />
                         <div class="portfolio-text-holder">
                           <p class="portfolio-title" style="font-size: 12px">
                             Drs. Sri Ilham Wahyu S, M.Si.
@@ -307,7 +307,7 @@
                         href="portfolio-4.html"
                         data-id="4"
                       >
-                        <img src="images/nanik.png" alt="" />
+                        <img src="images/nanik_background.png" alt="" />
                         <div class="portfolio-text-holder">
                           <p class="portfolio-title" style="font-size: 12px">
                             Dra. Ninik Asrukin, M.M.
@@ -330,7 +330,7 @@
                         href="portfolio-5.html"
                         data-id="5"
                       >
-                        <img src="images/achmad.png" alt="" />
+                        <img src="images/achmad_bacground.png" alt="" />
                         <div class="portfolio-text-holder">
                           <p class="portfolio-title" style="font-size: 12px">
                             Ir. H. Achmad Washil Miftahul Rachman, M.T
@@ -352,7 +352,7 @@
                         href="portfolio-6.html"
                         data-id="6"
                       >
-                        <img src="images/helmi.png" alt="" />
+                        <img src="images/helmi_background.png" alt="" />
                         <div class="portfolio-text-holder">
                           <p class="portfolio-title" style="font-size: 12px">
                             Helmy Yahya
@@ -374,7 +374,7 @@
                         href="portfolio-7.html"
                         data-id="7"
                       >
-                        <img src="images/andibg.png" alt="" />
+                        <img src="images/andi_background.png" alt="" />
                         <div class="portfolio-text-holder">
                           <p class="portfolio-title" style="font-size: 12px">
                             Andi Yuniantoro
@@ -396,7 +396,7 @@
                         href="portfolio-8.html"
                         data-id="8"
                       >
-                        <img src="images/faisalbg.png" alt="" />
+                        <img src="images/faisalbackground.png" alt="" />
                         <div class="portfolio-text-holder">
                           <p class="portfolio-title" style="font-size: 12px">
                             H.M. Faisal, S.Sos., M.Si.
@@ -755,7 +755,7 @@
                     </div>
                     <a
                       href=""
-                      class="pricing-button scroll ajax-form"
+                      class="pricing-button ajax-pricing-form"
                       data-id="1"
                       >PESAN</a
                     >
@@ -777,7 +777,7 @@
                       </ul>
                     </div>
                     <a
-                      href=""
+                      href="team-1.html"
                       class="pricing-button scroll ajax-form"
                       data-id="2"
                       >PESAN</a
@@ -910,7 +910,7 @@
                       >
                         <img
                           class="attachment-post-thumbnail"
-                          src="images/endro_tim.png"
+                          src="images/endro_team.png"
                           alt=""
                           style="width: 1000px"
                         />
@@ -933,7 +933,7 @@
                       >
                         <img
                           class="attachment-post-thumbnail"
-                          src="images/khalid_tim.png"
+                          src="images/khalid_team.png"
                           alt=""
                         />
                         <div class="member-mask">
@@ -958,7 +958,7 @@
                       >
                         <img
                           class="attachment-post-thumbnail"
-                          src="images/erick_tim.png"
+                          src="images/erick_team.png"
                           alt=""
                         />
                         <div class="member-mask">
@@ -978,7 +978,7 @@
                       >
                         <img
                           class="attachment-post-thumbnail"
-                          src="images/rinto_tim.png"
+                          src="images/rinto_team.png"
                           alt=""
                         />
                         <div class="member-mask">
@@ -1134,3 +1134,26 @@
     <script src="js/main.js"></script>
   </body>
 </html>
+
+<script>
+  $(document).ready(function () {
+    $("form").submit(function (event) {
+      var formData = {
+        name: $("#name").val(),
+        email: $("#contact-email").val(),
+        subject: $("#subject").val(),
+        message: $("#message").val(),
+      };
+      $.ajax({
+        type: "POST",
+        url: "https://api.enygma.id/v1/datasets/multipleinsert/5",
+        data: formData,
+        dataType: "json",
+        encode: true,
+      }).done(function (data) {
+        console.log(data);
+      });
+      event.preventDefault();
+    });
+  });
+</script>
