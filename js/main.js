@@ -12,7 +12,7 @@
   //PrettyPhoto initial
   setPrettyPhoto();
   //Send Mail
-  $('.contact-form [type="submit"]').on("click", function () {
+  $('.contact-us [type="submit"]').on("click", function () {
     SendMail();
   });
 
@@ -246,49 +246,49 @@
       });
   }
 
-  function priceItemContentLoadOnClick() {
-    $(".ajax-form").on("click", function (e) {
-      e.preventDefault();
-      var formId = $(this).data("id");
-      $(this).addClass("animate-plus");
-      $("html, body").animate(
-        { scrollTop: $(".one_half").offset().top - 120 },
-        300
-      );
-      if ($("#fcw-" + formId).length) {
-        setTimeout(function () {
-          $(".pricing-table").addClass("hide").fadeOut();
+    function priceItemContentLoadOnClick() {
+      $(".ajax-pricing-form").on("click", function (e) {
+        e.preventDefault();
+        var formId = $(this).data("id");
+        $(this).addClass("animate-plus");
+        $("html, body").animate(
+          { scrollTop: $(".one_half").offset().top - 120 },
+          300
+        );
+        if ($("#fcw-" + formId).length) {
           setTimeout(function () {
-            $("#fcw-" + formId).addClass("show");
-            $(".pricing-load-content-holder").addClass("show");
-            $(".ajax-form").removeClass("animate-plus");
-            $("#pricing-table").hide();
-          }, 300);
-        }, 500);
-      } else {
-        loadPricingItemContent(formId);
-      }
-    });
-  }
-
-  function loadPricingItemContent(formId) {
-    $.ajax({
-        url: $('.ajax-form[data-id="' + formId + '"]').attr('href'),
-        type: 'GET',
-        success: function (html) {
-            var getHtml = $(html).find(".form-pricing-wrapper").html();
-            $('.pricing-load-content-holder').append('<div id="fcw' + formId + '" class="form-pricing-content-wrapper">' + getHtml + '</div>');
-            if (!$("#fcw-" + formId + " .close-icon").length) {
-                $("#mcw-" + formId).prepend('<div class="close-icon"></div>');
-            }
-            $('html, body').animate({scrollTop: $('.one_half').offset().top - 150}, 400);
-          setTimeout(function () {
-
-          })
-
+            $(".pricing-table").addClass("hide").fadeOut();
+            setTimeout(function () {
+              $("#fcw-" + formId).addClass("show");
+              $(".pricing-load-content-holder").addClass("show");
+              $(".ajax-form").removeClass("animate-plus");
+              $("#pricing-table").hide();
+            }, 300);
+          }, 500);
+        } else {
+          loadPricingItemContent(formId);
         }
-    })
-  }
+      });
+    }
+
+    function loadPricingItemContent(formId) {
+      $.ajax({
+          url: $('.ajax-form[data-id="' + formId + '"]').attr('href'),
+          type: 'GET',
+          success: function (html) {
+              var getHtml = $(html).find(".form-pricing-wrapper").html();
+              $('.pricing-load-content-holder').append('<div id="fcw' + formId + '" class="form-pricing-content-wrapper">' + getHtml + '</div>');
+              if (!$("#fcw-" + formId + " .close-icon").length) {
+                  $("#mcw-" + formId).prepend('<div class="close-icon"></div>');
+              }
+              $('html, body').animate({scrollTop: $('.one_half').offset().top - 150}, 400);
+            setTimeout(function () {
+
+            })
+
+          }
+      })
+    }
 
   function memberContentLoadOnClick() {
     $(".ajax-member-content").on("click", function (e) {
@@ -529,60 +529,53 @@
   const form = document.getElementById("contact-us");
   form.addEventListener("submit", SendMail);
 
-  function SendMail(e) {
+  async function SendMail(e) {
     e.preventDefault();
 
-    var emailVal = $("#contact-email").val();
+    const emailVal = $("#contact-email").val();
 
     if (isValidEmailAddress(emailVal)) {
-      var params = {
+      const params = {
         action: "SendMessage",
         name: $("#name").val(),
         email: $("#contact-email").val(),
         subject: $("#subject").val(),
         message: $("#message").val(),
       };
-      $.ajax({
-        type: "POST",
-        url: "php/sendMail.php",
-        data: params,
-        success: function (response) {
-          if (response) {
-            var responseObj = $.parseJSON(response);
-            if (responseObj.ResponseData) {
-              alert(responseObj.ResponseData);
-            }
-          }
+
+      const data = {
+        token: "enygma_pwjnkkyn",
+        data: [params],
+      };
+
+      const settings = {
+        method: "POST",
+        headers: {
+          "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
+          "Content-Type": "application/json",
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-          //xhr.status : 404, 303, 501...
-          var error = null;
-          switch (xhr.status) {
-            case "301":
-              error = "Redirection Error!";
-              break;
-            case "307":
-              error = "Error, temporary server redirection!";
-              break;
-            case "400":
-              error = "Bad request!";
-              break;
-            case "404":
-              error = "Page not found!";
-              break;
-            case "500":
-              error = "Server is currently unavailable!";
-              break;
-            default:
-              error = "Unespected error, please try again later.";
-          }
-          if (error) {
-            alert(error);
-          }
-        },
-      });
+        body: JSON.stringify(data),
+      };
+
+      try {
+        const response = await fetch(
+          "http://api.enygma.id/v1/datasets/multipleinsert/5",
+          settings
+        );
+        if (response.ok) {
+          const responseObj = await response.json();
+          alert(responseObj.message);
+          location.reload();
+        } else {
+          throw new Error("Request failed");
+        }
+      } catch (error) {
+        const errorMessage =
+          error.message || "Unexpected error, please try again later.";
+        alert(errorMessage);
+      }
     } else {
-      alert("Your email is not in valid format");
+      alert("Your email is not in a valid format");
     }
   }
 
