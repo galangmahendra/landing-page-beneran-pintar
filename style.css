@@ -114,6 +114,8 @@ body pre {
   /* z-index: -1; */
 }
 
+
+
 /* ===================================
     1.1 Global Header Logo/Menu CSS
 ====================================== */
@@ -417,7 +419,7 @@ body .sm-clean li.current_page_item > a {
 }
 
 .section h2.entry-title,
-.page-template-default.page .section h1.entry-title {
+.page-template-default.page .section h1 {
   font-size: 60px;
   line-height: 70px;
   text-align: center;
@@ -594,6 +596,7 @@ body .sm-clean li.current_page_item > a {
   text-align: left;
   line-height: 25px;
   width: calc(70% - 25px);
+  color: #fff;
 }
 
 .service-txt h4 {
@@ -896,6 +899,7 @@ body .sm-clean li.current_page_item > a {
 
 .blog-item-holder-scode .excerpt {
   margin-top: 20px;
+  color: white;
 }
 
 .blog-item-holder-scode h4 {
@@ -1105,6 +1109,7 @@ body .sm-clean li.current_page_item > a {
   width: 100px;
   display: inline-block;
   vertical-align: text-top;
+  color: white;
 }
 
 .skill {
@@ -1131,6 +1136,7 @@ body .sm-clean li.current_page_item > a {
 .skill-text span {
   font-size: 22px;
   line-height: 35px;
+  color: white;
 }
 
 /* ===================================
@@ -1168,6 +1174,7 @@ body .sm-clean li.current_page_item > a {
   line-height: 35px;
   margin-bottom: 40px;
   font-weight: 100;
+  color: white;
 }
 
 #team-holder {
@@ -1714,7 +1721,7 @@ footer ul {
   }
 
   .section-wrapper {
-    padding: 75px 0 15px 0;
+    padding: 75px 30px 15px 40px;
   }
 
   .full-width .section-wrapper {
@@ -1818,7 +1825,7 @@ footer ul {
   }
 
   .section-wrapper {
-    padding: 40px 0 0 0;
+    padding: 40px 30px 0 40px;
   }
 
   .full-width {
@@ -1990,7 +1997,7 @@ footer ul {
   }
 
   .section-wrapper {
-    padding: 55px 0 20px 0;
+    padding: 55px 30px 20px 30px;
   }
 
   .copyright-holder {

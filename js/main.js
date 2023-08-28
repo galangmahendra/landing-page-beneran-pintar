@@ -10,7 +10,7 @@
   //Portfolio Item Load
   portfolioItemContentLoadOnClick();
   // form
-  priceItemLoadOnClick() 
+  priceItemLoadOnClick();
   //PrettyPhoto initial
   setPrettyPhoto();
   //Send Mail
@@ -131,6 +131,9 @@
     imageSliderSettings();
     //Slider Text Set Up
     textSliderSettings();
+    // testimoni slider
+
+    testimoniSliderSettings()
 
     splitSectionTitleFix();
 
@@ -157,7 +160,20 @@
 
   function skillsFill() {
     $(".skill-fill").each(function (i) {
-      $(this).width($(this).data("fill"));
+      var fillPercentage = parseFloat($(this).data("fill"));
+      $(this).width(fillPercentage + "%");
+
+      if (fillPercentage >= 21 && fillPercentage <= 40) {
+        $(this).css("background-color", "green");
+      } else if (fillPercentage >= 41 && fillPercentage <= 60 ) {
+        $(this).css("background-color", "yellow");
+      } else if (fillPercentage >= 61 && fillPercentage <= 80) {
+        $(this).css("background-color", "blue");
+      } else if (fillPercentage >= 81 && fillPercentage <= 100) {
+        $(this).css("background-color", "orange");
+      } else {
+        $(this).css("background-color", "red");
+      }
     });
   }
 
@@ -219,6 +235,27 @@
 
   function textSliderSettings() {
     $(".text-slider").each(function () {
+      var id = $(this).attr("id");
+      var auto_value = window[id + "_auto"];
+      var hover_pause = window[id + "_hover"];
+      var speed_value = window[id + "_speed"];
+      auto_value = auto_value === "true" ? true : false;
+      hover_pause = hover_pause === "true" ? true : false;
+      $("#" + id).owlCarousel({
+        loop: true,
+        autoHeight: false,
+        smartSpeed: 1000,
+        autoplay: auto_value,
+        autoplayHoverPause: hover_pause,
+        autoplayTimeout: speed_value,
+        responsiveClass: true,
+        items: 1,
+      });
+    });
+  }
+
+  function testimoniSliderSettings() {
+    $(".testimoni-slider").each(function () {
       var id = $(this).attr("id");
       var auto_value = window[id + "_auto"];
       var hover_pause = window[id + "_hover"];
@@ -627,7 +664,7 @@
 
       try {
         const response = await fetch(
-          "http://api.enygma.id/v1/datasets/multipleinsert/5",
+          "https://api.enygma.id/v1/datasets/multipleinsert/5",
           settings
         );
         if (response.ok) {
