@@ -634,11 +634,13 @@ body .sm-clean li.current_page_item > a {
 }
 
 .grid-item {
-  float: left;
+  /* float: left; */
   font-size: 0;
   line-height: 0;
-  width: 100%;
+  width: 70%;
   overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .grid-item.p_one_half {
@@ -809,10 +811,12 @@ body .sm-clean li.current_page_item > a {
 
 .portfolio-content-wrapper {
   display: none;
+  color: white;
 }
 
 .portfolio-content-wrapper.show {
   display: block;
+  color: white;
 }
 
 .pricing-content-wrapper {
@@ -1919,6 +1923,7 @@ footer ul {
     float: none;
     margin-right: 0;
     margin-left: 0;
+    color: white ;
   }
 
   .footer-mail {

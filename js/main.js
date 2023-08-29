@@ -163,16 +163,16 @@
       var fillPercentage = parseFloat($(this).data("fill"));
       $(this).width(fillPercentage + "%");
 
-      if (fillPercentage >= 21 && fillPercentage <= 40) {
-        $(this).css("background-color", "green");
-      } else if (fillPercentage >= 41 && fillPercentage <= 60 ) {
-        $(this).css("background-color", "yellow");
-      } else if (fillPercentage >= 61 && fillPercentage <= 80) {
-        $(this).css("background-color", "blue");
-      } else if (fillPercentage >= 81 && fillPercentage <= 100) {
-        $(this).css("background-color", "orange");
+      if (fillPercentage === 15) {
+        $(this).css("background-color", "#198754");
+      } else if (fillPercentage === 20) {
+        $(this).css("background-color", "#0DCAF0");
+      } else if (fillPercentage === 25 ) {
+        $(this).css("background-color", "#FFC107");
+      } else if (fillPercentage === 35) {
+        $(this).css("background-color", "#0D6EFD");
       } else {
-        $(this).css("background-color", "red");
+        $(this).css("background-color", "#DC3545");
       }
     });
   }
@@ -255,7 +255,7 @@
   }
 
   function testimoniSliderSettings() {
-    $(".testimoni-slider").each(function () {
+    $(".slider-testi").each(function () {
       var id = $(this).attr("id");
       var auto_value = window[id + "_auto"];
       var hover_pause = window[id + "_hover"];
@@ -274,6 +274,10 @@
       });
     });
   }
+  $(".slider-testi .owl-item").on('click', (x) => {
+    console.log(x)
+    $('.slider-testi').hide()
+  })
 
   function zIndexSectionFix() {
     var numSection = $(".page-template-onepage .section-wrapper").length + 2;
@@ -543,6 +547,7 @@
               $("#portfolio-grid").hide();
             }, 300);
             $(".close-icon").on("click", function (e) {
+              $('.slider-testi').show()
               var portfolioReturnItemID = $(this)
                 .closest(".portfolio-content-wrapper")
                 .attr("id")
