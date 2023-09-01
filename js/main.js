@@ -9,13 +9,22 @@
   memberContentLoadOnClick();
   //Portfolio Item Load
   portfolioItemContentLoadOnClick();
-  // form
-  priceItemLoadOnClick();
+
+  pricingItemContentLoadOnClick();
   //PrettyPhoto initial
   setPrettyPhoto();
   //Send Mail
   $('.contact-us [type="submit"]').on("click", function () {
     SendMail();
+  });
+
+  // send mail public
+  $('.contact-form-public [type="submit"]').on("click", function () {
+    SendMailPublic();
+  });
+
+  $('.contact-form-private [type="submit"]').on("click", function () {
+    SendMailPrivate();
   });
 
   if (is_touch_device()) {
@@ -133,7 +142,7 @@
     textSliderSettings();
     // testimoni slider
 
-    testimoniSliderSettings()
+    testimoniSliderSettings();
 
     splitSectionTitleFix();
 
@@ -167,7 +176,7 @@
         $(this).css("background-color", "#198754");
       } else if (fillPercentage === 20) {
         $(this).css("background-color", "#0DCAF0");
-      } else if (fillPercentage === 25 ) {
+      } else if (fillPercentage === 25) {
         $(this).css("background-color", "#FFC107");
       } else if (fillPercentage === 35) {
         $(this).css("background-color", "#0D6EFD");
@@ -274,10 +283,10 @@
       });
     });
   }
-  $(".slider-testi .owl-item").on('click', (x) => {
-    console.log(x)
-    $('.slider-testi').hide()
-  })
+  $(".slider-testi .owl-item").on("click", (x) => {
+    console.log(x);
+    $(".slider-testi").hide();
+  });
 
   function zIndexSectionFix() {
     var numSection = $(".page-template-onepage .section-wrapper").length + 2;
@@ -289,112 +298,123 @@
       });
   }
 
-  function priceItemLoadOnClick() {
-    $(".ajak-pricing").on("click", function (e) {
+  function pricingItemContentLoadOnClick() {
+    $(".ajax-pricing").on("click", function (e) {
       e.preventDefault();
-      var formId = $(this).data("id");
+      var pricingItemID = $(this).data("id");
+      console.log(pricingItemID, "pricing");
       $(this).addClass("animate-plus");
-      if ($("#fcw" + formId).length) {
+      console.log(this, "test this");
+      if ($("#fcw-" + pricingItemID).length) {
         $("html, body").animate(
           { scrollTop: $("#pricing-wrapper").offset().top - 150 },
-          400
-        );
-        setTimeout(function () {
-          $("#pricing-grid").addClass("hide");
-          setTimeout(function () {
-            $("#fcw" + formId).addClass("show");
+          400,
+          function() {
+            $("#pricing-grid").addClass("hide");
+            $("#fcw-" + pricingItemID).addClass("show");
             $(".pricing-load-content-holder").addClass("show");
             $(".ajax-pricing").removeClass("animate-plus");
             $("#pricing-grid").hide();
-          }, 300);
-        }, 500);
+          }
+        );
       } else {
-        loadPricingItemContent(formId);
+        loadPricingItemContent(pricingItemID);
       }
     });
   }
 
-  function loadPricingItemContent(formId) {
+  function loadPricingItemContent(pricingItemID) {
     $.ajax({
-      url: $('.ajax-pricing[data-id="' + formId + '"]').attr("href"),
+      url: $('.ajax-pricing[data-id="' + pricingItemID + '"]').attr("href"),
       type: "GET",
       success: function (html) {
-        var getFormHTML = $(html).find(".pricing").html();
+        var getPriceItemHTML = $(html).find(".price-item-wrapper").html();
+        console.log(getPriceItemHTML, "test price html");
         $(".pricing-load-content-holder").append(
-          '<div id="fcw' +
-            formId +
+          '<div id="fcw-' +
+            pricingItemID +
             '" class="pricing-content-wrapper">' +
-            getFormHTML +
+            getPriceItemHTML +
             "</div>"
         );
-        if (!$("#fcw" + formId + " .close-icon").length) {
-          $("#fcw-" + formId).prepend('<div class="close-icon"></div>');
+        if (!$("#fcw-" + pricingItemID + " .close-icon").length) {
+          $("#fcw-" + pricingItemID).prepend('<div class="close-icon"></div>');
         }
         $("html, body").animate(
           { scrollTop: $("#pricing-wrapper").offset().top - 150 },
           400
         );
-        setTimeout(function () {
-          $("#fcw-" + formId).imagesLoaded(function () {
-            skillsFill();
-            imageSliderSettings();
-            $(".site-content").fitVids();
-            $("#pricing-grid").addClass("hide");
-            setTimeout(function () {
-              $("#fcw-" + formId).addClass("show");
-              $(".pricing-load-content-holder").addClass("show");
-              $(".ajax-pricing").removeClass("animate-plus");
-              $("#pricing-grid").hide();
-            }, 300);
-            $(".close-icon").on("click", function (e) {
-              var formReturnItemID = $(this)
-                .closest(".pricing-content-wrapper")
-                .attr("id")
-                .split("-")[1];
-              $(".pricing-load-content-holder").addClass("viceversa");
-              $("#pricing-grid").css("display", "block");
-              setTimeout(function () {
-                $("#fcw" + formReturnItemID).removeClass("show");
-                $(".pricing-load-content-holder").removeClass("viceversa show");
-                $("#pricing-grid").removeClass("hide");
-              }, 300);
-              setTimeout(function () {
-                $("html, body").animate(
-                  {
-                    scrollTop:
-                      $("#price-label" + formReturnItemID).offset().top - 150,
-                  },
-                  400
-                );
-              }, 500);
-            });
+        $("#fcw-" + pricingItemID).imagesLoaded(function () {
+          skillsFill();
+          imageSliderSettings();
+          $(".site-content").fitVids(); //Fit Video
+          $("#pricing-grid").addClass("hide");
+          
+          // Animasi elemen
+          $("#fcw-" + pricingItemID).addClass("show");
+          $(".pricing-load-content-holder").addClass("show");
+          $(".ajax-pricing").removeClass("animate-plus");
+          $("#pricing-grid").hide();
+        
+          $(".close-icon").on("click", function (e) {
+            var pricingReturnItemID = $(this)
+              .closest(".pricing-content-wrapper")
+              .attr("id")
+              .split("-")[1];
+            $(".pricing-load-content-holder").addClass("viceversa");
+            $("#pricing-grid").css("display", "block");
+            
+            // Animasi elemen kembali
+            $("#fcw-" + pricingReturnItemID).removeClass("show");
+            $(".pricing-load-content-holder").removeClass("viceversa show");
+            $("#pricing-grid").removeClass("hide");
+        
+            // Animasi scroll
+            $("html, body").animate(
+              {
+                scrollTop:
+                  $("#p-item-" + pricingReturnItemID).offset().top - 150,
+              },
+              400
+            );
           });
-        }, 500);
-      },
-    });
-  }
-
-  function loadPricingItemContent(formId) {
-    $.ajax({
-      url: $('.ajax-form[data-id="' + formId + '"]').attr("href"),
-      type: "GET",
-      success: function (html) {
-        var getHtml = $(html).find(".form-pricing-wrapper").html();
-        $(".pricing-load-content-holder").append(
-          '<div id="fcw' +
-            formId +
-            '" class="form-pricing-content-wrapper">' +
-            getHtml +
-            "</div>"
-        );
-        if (!$("#fcw-" + formId + " .close-icon").length) {
-          $("#mcw-" + formId).prepend('<div class="close-icon"></div>');
-        }
-        $("html, body").animate(
-          { scrollTop: $(".one_half").offset().top - 150 },
-          400
-        );
-        setTimeout(function () {});
+        });
+        // setTimeout(function () {
+        //   $("#fcw-" + pricingItemID).imagesLoaded(function () {
+        //     skillsFill();
+        //     imageSliderSettings();
+        //     $(".site-content").fitVids(); //Fit Video
+        //     $("#pricing-grid").addClass("hide");
+        //     setTimeout(function () {
+        //       $("#fcw-" + pricingItemID).addClass("show");
+        //       $(".pricing-load-content-holder").addClass("show");
+        //       $(".ajax-pricing").removeClass("animate-plus");
+        //       $("#pricing-grid").hide();
+        //     }, 300);
+        //     $(".close-icon").on("click", function (e) {
+        //       var pricingReturnItemID = $(this)
+        //         .closest(".pricing-content-wrapper")
+        //         .attr("id")
+        //         .split("-")[1];
+        //       $(".pricing-load-content-holder").addClass("viceversa");
+        //       $("#pricing-grid").css("display", "block");
+        //       setTimeout(function () {
+        //         $("#fcw-" + pricingReturnItemID).removeClass("show");
+        //         $(".pricing-load-content-holder").removeClass("viceversa show");
+        //         $("#pricing-grid").removeClass("hide");
+        //       }, 300);
+        //       setTimeout(function () {
+        //         $("html, body").animate(
+        //           {
+        //             scrollTop:
+        //               $("#p-item-" + pricingReturnItemID).offset().top - 150,
+        //           },
+        //           400
+        //         );
+        //       }, 500);
+        //     });
+        //   });
+        // }, 500);
       },
     });
   }
@@ -403,6 +423,7 @@
     $(".ajax-member-content").on("click", function (e) {
       e.preventDefault();
       var memberID = $(this).data("id");
+      console.log(memberID, "test member");
       $(this).find(".member-mask").addClass("animate-plus");
       $("html, body").animate(
         { scrollTop: $("#team-holder").offset().top - 120 },
@@ -547,7 +568,7 @@
               $("#portfolio-grid").hide();
             }, 300);
             $(".close-icon").on("click", function (e) {
-              $('.slider-testi').show()
+              $(".slider-testi").show();
               var portfolioReturnItemID = $(this)
                 .closest(".portfolio-content-wrapper")
                 .attr("id")
@@ -684,6 +705,140 @@
           error.message || "Unexpected error, please try again later.";
         alert(errorMessage);
       }
+    } else {
+      alert("Your email is not in a valid format");
+    }
+  }
+
+  // const formPublic = document.getElementById("public-form");
+  // if (formPublic) {
+  //   formPublic.addEventListener("submit", SendMailPublic);
+  // } else {
+  //   console.error("Element with ID 'public-form' not found.");
+  // }
+
+//   window.addEventListener("DOMContentLoaded", (event) => {
+//     const formPublic = document.getElementById("public-form");
+//     if (formPublic) {
+//       formPublic.addEventListener("submit", SendMailPublic);
+//     }
+// });
+
+  // async function SendMailPublic(e) {
+  //   e.preventDefault();
+
+  //   const emailVal = $("#contact-email").val();
+
+  //   if (isValidEmailAddress(emailVal)) {
+  //     const params = {
+  //       action: "SendMessage",
+  //       name: $("#name").val(),
+  //       email: $("#contact-email").val(),
+  //       subject: $("#subject").val(),
+  //     };
+
+  //     console.log(params, "params");
+
+  //     const data = {
+  //       token: "enygma_pwjnkkyn",
+  //       data: [params],
+  //     };
+
+  //     const settings = {
+  //       method: "POST",
+  //       headers: {
+  //         "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     };
+
+  //     try {
+  //       const response = await fetch(
+  //         "https://api.enygma.id/v1/datasets/multipleinsert/5",
+  //         settings
+  //       );
+  //       if (response.ok) {
+  //         const responseObj = await response.json();
+  //         alert(responseObj.message);
+  //         location.reload();
+  //       } else {
+  //         throw new Error("Request failed");
+  //       }
+  //     } catch (error) {
+  //       const errorMessage =
+  //         error.message || "Unexpected error, please try again later.";
+  //       alert(errorMessage);
+  //     }
+  //   } else {
+  //     alert("Your email is not in a valid format");
+  //   }
+  // }
+  
+
+  const formPrivate = document.getElementById("private-form");
+  formPrivate.addEventListener("submit", SendMailPrivate);
+
+  async function SendMailPrivate(e) {
+    e.preventDefault();
+
+    const emailVal = $("#contact-email").val();
+
+    if (isValidEmailAddress(emailVal)) {
+      const params = {
+        action: "SendMessage",
+        name: $("#name-private").val(),
+        email: $("#email-private").val(),
+        subject: $("#quantity").val(),
+      };
+
+      $.ajax({
+        type: "POST",
+        url: "https://jsonplaceholder.typicode.com/users",
+        data: JSON.stringify(params),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(data) {
+            console.log("User created:", data);
+        },
+        error: function(error) {
+            console.error("Error:", error);
+        }
+    });
+
+      // console.log(params, "params");
+
+      // const data = {
+      //   token: "enygma_pwjnkkyn",
+      //   data: [params],
+      // };
+
+      // const settings = {
+      //   method: "POST",
+      //   headers: {
+      //     "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // };
+
+      // try {
+      //   const response = await fetch(
+      //     "https://api.enygma.id/v1/datasets/multipleinsert/5",
+      //     settings
+      //   );
+      //   if (response.ok) {
+      //     const responseObj = await response.json();
+      //     alert(responseObj.message);
+      //     location.reload();
+      //   } else {
+      //     throw new Error("Request failed");
+      //   }
+      // } catch (error) {
+      //   const errorMessage =
+      //     error.message || "Unexpected error, please try again later.";
+      //   alert(errorMessage);
+      // }
     } else {
       alert("Your email is not in a valid format");
     }

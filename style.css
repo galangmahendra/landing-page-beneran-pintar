@@ -805,7 +805,7 @@ body .sm-clean li.current_page_item > a {
   transform: translateY(70px);
 }
 
-.section.no-padding .portfolio-content-wrapper .pricing-load-content-holder {
+.section.no-padding .portfolio-content-wrapper .pricing-content-wrapper {
   margin: 75px 0;
 }
 
@@ -854,7 +854,18 @@ body .sm-clean li.current_page_item > a {
   opacity: 1;
 }
 
+a.pricing-button.animate-plus:after, .ajax-pricing.animate-plus {
+  opacity: 1;
+}
+
 .portfolio-item-wrapper {
+  width: 690px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  max-width: 95%;
+}
+
+.price-item-wrapper {
   width: 690px;
   margin-top: 100px;
   margin-bottom: 50px;
@@ -1369,13 +1380,67 @@ body .sm-clean li.current_page_item > a {
   color: #000;
 }
 
+.contact-form-public {
+  max-width: 100%;
+  margin: 0 auto;
+  font-size: 22px;
+  color: #000;
+}
+
+.contact-form-private {
+  max-width: 100%;
+  margin: 0 auto;
+  font-size: 22px;
+  color: #000;
+}
+
 .contact-form p {
+  margin-bottom: 0 !important;
+}
+
+.contact-form-public p {
+  margin-bottom: 0 !important;
+}
+
+.contact-form-private p {
   margin-bottom: 0 !important;
 }
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
+  border: 0;
+  font-size: 16px;
+  padding: 5px 0;
+  width: 100%;
+  line-height: 25px;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 35px;
+  text-indent: 10px;
+  background-color: transparent;
+  border-bottom: 1px solid;
+}
+
+.contact-form-public input[type="text"],
+.contact-form-public input[type="email"],
+.contact-form-public textarea {
+  border: 0;
+  font-size: 16px;
+  padding: 5px 0;
+  width: 100%;
+  line-height: 25px;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 35px;
+  text-indent: 10px;
+  background-color: transparent;
+  border-bottom: 1px solid;
+}
+
+.contact-form-private input[type="text"],
+.contact-form-private input[type="email"],
+.contact-form-private textarea {
   border: 0;
   font-size: 16px;
   padding: 5px 0;
@@ -1403,9 +1468,51 @@ body .sm-clean li.current_page_item > a {
   line-height: 25px;
 }
 
+.contact-form-public input[type="text"]::-webkit-input-placeholder,
+.contact-form-public input[type="email"]::-webkit-input-placeholder,
+.contact-form-public textarea::-webkit-input-placeholder {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.contact-form-private input[type="text"]::-webkit-input-placeholder,
+.contact-form-private input[type="email"]::-webkit-input-placeholder,
+.contact-form-private textarea::-webkit-input-placeholder {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+}
+
 .contact-form input[type="text"]::-moz-placeholder,
 .contact-form input[type="email"]::-moz-placeholder,
 .contact-form textarea::-moz-placeholder {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  opacity: 1;
+}
+
+.contact-form-public input[type="text"]::-moz-placeholder,
+.contact-form-public input[type="email"]::-moz-placeholder,
+.contact-form-public textarea::-moz-placeholder {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  opacity: 1;
+}
+
+.contact-form-private input[type="text"]::-moz-placeholder,
+.contact-form-private input[type="email"]::-moz-placeholder,
+.contact-form-private textarea::-moz-placeholder {
   font-family: "Poppins", sans-serif;
   color: #fff;
   font-weight: 400;
@@ -1424,6 +1531,26 @@ body .sm-clean li.current_page_item > a {
   line-height: 25px;
 }
 
+.contact-form-public input[type="text"]:-ms-input-placeholder,
+.contact-form-public input[type="email"]:-ms-input-placeholder,
+.contact-form-public textarea:-ms-input-placeholder {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.contact-form-private input[type="text"]:-ms-input-placeholder,
+.contact-form-private input[type="email"]:-ms-input-placeholder,
+.contact-form-private textarea:-ms-input-placeholder {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+}
+
 .contact-form input[type="text"]:-moz-placeholder,
 .contact-form input[type="email"]:-moz-placeholder,
 .contact-form textarea:-moz-placeholder {
@@ -1435,7 +1562,37 @@ body .sm-clean li.current_page_item > a {
   opacity: 1;
 }
 
+.contact-form-public input[type="text"]:-moz-placeholder,
+.contact-form-public input[type="email"]:-moz-placeholder,
+.contact-form-public textarea:-moz-placeholder {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  opacity: 1;
+}
+
+.contact-form-private input[type="text"]:-moz-placeholder,
+.contact-form-private input[type="email"]:-moz-placeholder,
+.contact-form-private textarea:-moz-placeholder {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  opacity: 1;
+}
+
 .contact-form input[name="your-name"] {
+  margin-top: 0;
+}
+
+.contact-form-public input[name="your-name"] {
+  margin-top: 0;
+}
+
+.contact-form-private input[name="your-name"] {
   margin-top: 0;
 }
 
@@ -1464,7 +1621,55 @@ body .sm-clean li.current_page_item > a {
   width: 100%;
 }
 
+.contact-form-public input[type="submit"] {
+  display: block;
+  border: 1px solid;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 25px;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  background-color: transparent;
+  padding-bottom: 17px;
+  padding-top: 17px;
+  transition: all 0.2s linear;
+  font-size: 16px;
+  font-weight: 700;
+  width: 100%;
+}
+
+.contact-form-private input[type="submit"] {
+  display: block;
+  border: 1px solid;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 25px;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  background-color: transparent;
+  padding-bottom: 17px;
+  padding-top: 17px;
+  transition: all 0.2s linear;
+  font-size: 16px;
+  font-weight: 700;
+  width: 100%;
+}
+
 .contact-form input[type="submit"]:hover {
+  opacity: 0.5;
+}
+
+.contact-form-public input[type="submit"]:hover {
+  opacity: 0.5;
+}
+
+.contact-form-private input[type="submit"]:hover {
   opacity: 0.5;
 }
 

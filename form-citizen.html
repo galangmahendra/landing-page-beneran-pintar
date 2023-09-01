@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
   <head>
     <title>Cardea - One Page Html Template</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -18,16 +18,10 @@
       type="text/css"
     />
     <link rel="stylesheet" type="text/css" href="style.css" />
-
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
   </head>
-
   <body>
     <div class="site-wrapper">
-     <div class="doc-loader">
+      <div class="doc-loader">
         <img src="images/preloader.gif" alt="Cardea" />
       </div>
 
@@ -60,6 +54,9 @@
                   <a href="index.html#portfolio">Portfolio</a>
                 </li>
                 <li>
+                  <a href="index.html#inspire">Inspire</a>
+                </li>
+                <li>
                   <a href="index.html#about">About</a>
                 </li>
                 <li>
@@ -75,6 +72,9 @@
                   <a href="index.html#team">Team</a>
                 </li>
                 <li>
+                  <a href="index.html#clients">Clients</a>
+                </li>
+                <li>
                   <a href="index.html#contact">Contact</a>
                 </li>
               </ul>
@@ -85,35 +85,54 @@
       </header>
 
       <div id="content" class="site-content center-relative">
-        <div class="portfolio-item-wrapper center-relative">
-          <div class="portfolio-content">
-            <div id="slider2" class="image-slider-wrapper relative">
-              <div
-                id="slider"
-                class="owl-carousel owl-theme image-slider slider"
-              >
-                <div class="owl-item">
-                  <img src="images/helmi_testi.png" alt="" style="width: 70%; margin-left: auto; margin-right: auto;"/>
-                </div>
-              </div>
+        <div class="price-item-wrapper center-relative">
+          <div class="price-content">
+            <div class="contact-form-private">
+              <form id="private-form" method="POST">
+              <p>
+                <input
+                  id="name-private"
+                  type="text"
+                  name="your-name"
+                  placeholder="Name"
+                />
+              </p>
+              <p>
+                <input
+                  id="email-private"
+                  type="email"
+                  name="your-email"
+                  placeholder="Email"
+                />
+              </p>
+              <p>
+                <input
+                  id="subject"
+                  type="text"
+                  name="your-subject"
+                  placeholder="Publik/Pemerintah"
+                />
+              </p>
+              <!-- <p>
+                <input
+                  id="quantity"
+                  type="text"
+                  name="Jumlah Pesanan"
+                  placeholder="Jumlah Pesanan"
+                />
+              </p> -->
+              <p class="contact-submit-holder">
+                <input type="submit" value="SEND" />
+              </p>
+            </form>
             </div>
-            <div class="two_third" style="text-align: center; font-size: 18px">
-              “Judul yang menggelitik. Seolah mengajak setiap daerah untuk
-              bertanya-tanya apakah benar kota yang mengeklaim dirinya <i>smart</i>,
-              memang benar-benar pintar? Melalui buku ini, pembahasan mengenai
-              <i>Smart City</i> terasa ringan dan aplikatif. Patut untuk menjadi
-              referensi setiap daerah guna mewujudkan Kota Pintar.”
-            </div>
-            <p style="text-align: center; font-size: 16px">
-              Helmy Yahya
-            </p>
-            <p style="text-align: center">Business coach</p>
-            <div class="clear"></div>
+
           </div>
+
         </div>
+
       </div>
 
-      <!-- Footer -->
       <footer class="footer">
         <div class="footer-content center-relative">
           <div class="footer-mail">
@@ -150,18 +169,5 @@
         </div>
       </footer>
     </div>
-
-    <!--Load JavaScript-->
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/imagesloaded.pkgd.js"></script>
-    <script src="js/jquery.fitvids.js"></script>
-    <script src="js/jquery.smartmenus.min.js"></script>
-    <script src="js/isotope.pkgd.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky-kit.min.js"></script>
-    <script src="js/main.js"></script>
   </body>
 </html>
