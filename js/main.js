@@ -13,18 +13,10 @@
   pricingItemContentLoadOnClick();
   //PrettyPhoto initial
   setPrettyPhoto();
+
   //Send Mail
   $('.contact-us [type="submit"]').on("click", function () {
     SendMail();
-  });
-
-  // send mail public
-  $('.contact-form-public [type="submit"]').on("click", function () {
-    SendMailPublic();
-  });
-
-  $('.contact-form-private [type="submit"]').on("click", function () {
-    SendMailPrivate();
   });
 
   if (is_touch_device()) {
@@ -309,7 +301,7 @@
         $("html, body").animate(
           { scrollTop: $("#pricing-wrapper").offset().top - 150 },
           400,
-          function() {
+          function () {
             $("#pricing-grid").addClass("hide");
             $("#fcw-" + pricingItemID).addClass("show");
             $(".pricing-load-content-holder").addClass("show");
@@ -340,22 +332,33 @@
         if (!$("#fcw-" + pricingItemID + " .close-icon").length) {
           $("#fcw-" + pricingItemID).prepend('<div class="close-icon"></div>');
         }
-        $("html, body").animate(
-          { scrollTop: $("#pricing-wrapper").offset().top - 150 },
-          400
-        );
+        // $("html, body").animate(
+        //   { scrollTop: $("#pricing-wrapper").offset().top - 150 },
+        //   400
+        // );
         $("#fcw-" + pricingItemID).imagesLoaded(function () {
-          skillsFill();
-          imageSliderSettings();
-          $(".site-content").fitVids(); //Fit Video
-          $("#pricing-grid").addClass("hide");
-          
           // Animasi elemen
           $("#fcw-" + pricingItemID).addClass("show");
           $(".pricing-load-content-holder").addClass("show");
+          $('.contact-submit-private [type="submit"]').on(
+            "click",
+            function (event) {
+              event.preventDefault();
+              SendMailPrivate();
+            }
+          );
+
+          $('.contact-submit-public [type="submit"]').on(
+            "click",
+            function (event) {
+              event.preventDefault();
+              SendMailPublic();
+            }
+          );
+
           $(".ajax-pricing").removeClass("animate-plus");
           $("#pricing-grid").hide();
-        
+
           $(".close-icon").on("click", function (e) {
             var pricingReturnItemID = $(this)
               .closest(".pricing-content-wrapper")
@@ -363,12 +366,12 @@
               .split("-")[1];
             $(".pricing-load-content-holder").addClass("viceversa");
             $("#pricing-grid").css("display", "block");
-            
+
             // Animasi elemen kembali
             $("#fcw-" + pricingReturnItemID).removeClass("show");
             $(".pricing-load-content-holder").removeClass("viceversa show");
             $("#pricing-grid").removeClass("hide");
-        
+
             // Animasi scroll
             $("html, body").animate(
               {
@@ -666,18 +669,20 @@
     const emailVal = $("#contact-email").val();
 
     if (isValidEmailAddress(emailVal)) {
-      const params = {
-        action: "SendMessage",
-        name: $("#name").val(),
-        email: $("#contact-email").val(),
-        subject: $("#subject").val(),
-        message: $("#message").val(),
-      };
-
       const data = {
         token: "enygma_pwjnkkyn",
-        data: [params],
+        data: [
+          {
+            Custom_Unique_ID: "1",
+            Data_Date: "2023-08-25",
+            Name: $("#name").val(),
+            Email: $("#contact-email").val(),
+            Subject: $("#subject").val(),
+            Message: $("#message").val(),
+          },
+        ],
       };
+      console.log(data, "data");
 
       const settings = {
         method: "POST",
@@ -687,6 +692,7 @@
         },
         body: JSON.stringify(data),
       };
+      console.log(settings, "test setting");
 
       try {
         const response = await fetch(
@@ -717,12 +723,12 @@
   //   console.error("Element with ID 'public-form' not found.");
   // }
 
-//   window.addEventListener("DOMContentLoaded", (event) => {
-//     const formPublic = document.getElementById("public-form");
-//     if (formPublic) {
-//       formPublic.addEventListener("submit", SendMailPublic);
-//     }
-// });
+  //   window.addEventListener("DOMContentLoaded", (event) => {
+  //     const formPublic = document.getElementById("public-form");
+  //     if (formPublic) {
+  //       formPublic.addEventListener("submit", SendMailPublic);
+  //     }
+  // });
 
   // async function SendMailPublic(e) {
   //   e.preventDefault();
@@ -774,71 +780,182 @@
   //     alert("Your email is not in a valid format");
   //   }
   // }
-  
 
-  const formPrivate = document.getElementById("private-form");
-  formPrivate.addEventListener("submit", SendMailPrivate);
+  // document.addEventListener("DOMContentLoaded", function(e){
+  //   document.getElementById("private-form").addEventListener("submit", function(e) {
+  //     console.log("clicked:", this);
+  //   });
+  // });
 
-  async function SendMailPrivate(e) {
-    e.preventDefault();
+  // const formPrivate = document.getElementById("private-form");
+  // formPrivate.addEventListener("submit", SendMailPrivate);
+
+  // async function SendMailPrivate() {
+  //   // e.preventDefault();
+
+  //   const emailVal = $("#contact-email").val();
+
+  //   if (isValidEmailAddress(emailVal)) {
+  //     const params = {
+  //       action: "SendMessage",
+  //       name: $("#name-private").val(),
+  //       email: $("#email-private").val(),
+  //       subject: $("#quantity").val(),
+  //     };
+
+  //     $.ajax({
+  //       type: "POST",
+  //       url: "https://jsonplaceholder.typicode.com/users",
+  //       data: JSON.stringify(params),
+  //       contentType: "application/json; charset=utf-8",
+  //       dataType: "json",
+  //       success: function (data) {
+  //         console.log("User created:", data);
+  //       },
+  //       error: function (error) {
+  //         console.error("Error:", error);
+  //       },
+  //     });
+
+  //     // console.log(params, "params");
+
+  //     // const data = {
+  //     //   token: "enygma_pwjnkkyn",
+  //     //   data: [params],
+  //     // };
+
+  //     // const settings = {
+  //     //   method: "POST",
+  //     //   headers: {
+  //     //     "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
+  //     //     "Content-Type": "application/json",
+  //     //   },
+  //     //   body: JSON.stringify(data),
+  //     // };
+
+  //     // try {
+  //     //   const response = await fetch(
+  //     //     "https://api.enygma.id/v1/datasets/multipleinsert/5",
+  //     //     settings
+  //     //   );
+  //     //   if (response.ok) {
+  //     //     const responseObj = await response.json();
+  //     //     alert(responseObj.message);
+  //     //     location.reload();
+  //     //   } else {
+  //     //     throw new Error("Request failed");
+  //     //   }
+  //     // } catch (error) {
+  //     //   const errorMessage =
+  //     //     error.message || "Unexpected error, please try again later.";
+  //     //   alert(errorMessage);
+  //     // }
+  //   } else {
+  //     alert("Your email is not in a valid format");
+  //   }
+  // }
+
+  async function SendMailPublic() {
+    // e.preventDefault();
 
     const emailVal = $("#contact-email").val();
 
     if (isValidEmailAddress(emailVal)) {
-      const params = {
-        action: "SendMessage",
-        name: $("#name-private").val(),
-        email: $("#email-private").val(),
-        subject: $("#quantity").val(),
+      const data = {
+        token: "enygma_pwjnkkyn",
+        data: [
+          {
+            Custom_Unique_ID: "1",
+            Data_Date: "2023-08-25",
+            Name: $("#name").val(),
+            Email: $("#contact-email").val(),
+            Subject: $("#subject").val(),
+            Message: $("#message").val(),
+          },
+        ],
       };
+      console.log(data, "data");
 
-      $.ajax({
-        type: "POST",
-        url: "https://jsonplaceholder.typicode.com/users",
-        data: JSON.stringify(params),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function(data) {
-            console.log("User created:", data);
+      const settings = {
+        method: "POST",
+        headers: {
+          "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
+          "Content-Type": "application/json",
         },
-        error: function(error) {
-            console.error("Error:", error);
+        body: JSON.stringify(data),
+      };
+      console.log(settings, "test setting");
+
+      try {
+        const response = await fetch(
+          "https://api.enygma.id/v1/datasets/multipleinsert/5",
+          settings
+        );
+        if (response.ok) {
+          const responseObj = await response.json();
+          alert(responseObj.message);
+          location.reload();
+        } else {
+          throw new Error("Request failed");
         }
-    });
+      } catch (error) {
+        const errorMessage =
+          error.message || "Unexpected error, please try again later.";
+        alert(errorMessage);
+      }
+    } else {
+      alert("Your email is not in a valid format");
+    }
+  }
 
-      // console.log(params, "params");
+  async function SendMailPrivate() {
+    // e.preventDefault();
 
-      // const data = {
-      //   token: "enygma_pwjnkkyn",
-      //   data: [params],
-      // };
+    const emailVal = $("#contact-email").val();
 
-      // const settings = {
-      //   method: "POST",
-      //   headers: {
-      //     "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(data),
-      // };
+    if (isValidEmailAddress(emailVal)) {
+      const data = {
+        token: "enygma_pwjnkkyn",
+        data: [
+          {
+            Custom_Unique_ID: "1",
+            Data_Date: "2023-08-25",
+            Name: $("#name").val(),
+            Email: $("#contact-email").val(),
+            Subject: $("#subject").val(),
+            Message: $("#message").val(),
+          },
+        ],
+      };
+      console.log(data, "data");
 
-      // try {
-      //   const response = await fetch(
-      //     "https://api.enygma.id/v1/datasets/multipleinsert/5",
-      //     settings
-      //   );
-      //   if (response.ok) {
-      //     const responseObj = await response.json();
-      //     alert(responseObj.message);
-      //     location.reload();
-      //   } else {
-      //     throw new Error("Request failed");
-      //   }
-      // } catch (error) {
-      //   const errorMessage =
-      //     error.message || "Unexpected error, please try again later.";
-      //   alert(errorMessage);
-      // }
+      const settings = {
+        method: "POST",
+        headers: {
+          "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+      console.log(settings, "test setting");
+
+      try {
+        const response = await fetch(
+          "https://api.enygma.id/v1/datasets/multipleinsert/5",
+          settings
+        );
+        if (response.ok) {
+          const responseObj = await response.json();
+          alert(responseObj.message);
+          location.reload();
+        } else {
+          throw new Error("Request failed");
+        }
+      } catch (error) {
+        const errorMessage =
+          error.message || "Unexpected error, please try again later.";
+        alert(errorMessage);
+      }
     } else {
       alert("Your email is not in a valid format");
     }

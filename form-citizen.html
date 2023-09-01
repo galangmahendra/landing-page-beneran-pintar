@@ -88,49 +88,45 @@
         <div class="price-item-wrapper center-relative">
           <div class="price-content">
             <div class="contact-form-private">
-              <form id="private-form" method="POST">
-              <p>
-                <input
-                  id="name-private"
-                  type="text"
-                  name="your-name"
-                  placeholder="Name"
-                />
-              </p>
-              <p>
-                <input
-                  id="email-private"
-                  type="email"
-                  name="your-email"
-                  placeholder="Email"
-                />
-              </p>
-              <p>
-                <input
-                  id="subject"
-                  type="text"
-                  name="your-subject"
-                  placeholder="Publik/Pemerintah"
-                />
-              </p>
-              <!-- <p>
-                <input
-                  id="quantity"
-                  type="text"
-                  name="Jumlah Pesanan"
-                  placeholder="Jumlah Pesanan"
-                />
-              </p> -->
-              <p class="contact-submit-holder">
-                <input type="submit" value="SEND" />
-              </p>
-            </form>
+              <form id="private-form" method="GET">
+                <p>
+                  <input
+                    id="name"
+                    type="text"
+                    name="your-name"
+                    placeholder="Name"
+                  />
+                </p>
+                <p>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="your-email"
+                    placeholder="Email"
+                  />
+                </p>
+                <p>
+                  <input
+                    id="subject"
+                    type="text"
+                    name="your-subject"
+                    placeholder="Publik/Pemerintah"
+                  />
+                </p>
+                <p>
+                  <textarea
+                    id="message"
+                    name="your-message"
+                    placeholder="Pesan Anda"
+                  ></textarea>
+                </p>
+                <p class="contact-submit-private">
+                  <input type="submit" value="SEND" />
+                </p>
+              </form>
             </div>
-
           </div>
-
         </div>
-
       </div>
 
       <footer class="footer">
