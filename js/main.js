@@ -1,6 +1,10 @@
 (function ($) {
   "use strict";
 
+  let date = new Date();
+  const day = date.toLocaleString("default", { day: "2-digit" });
+  const month = date.toLocaleString("default", { month: "2-digit" });
+  const year = date.toLocaleString("default", { year: "numeric" });
   //Fix for Skills Fill
   skillsFill();
   //Fix z-index
@@ -673,8 +677,8 @@
         token: "enygma_pwjnkkyn",
         data: [
           {
-            Custom_Unique_ID: "1",
-            Data_Date: "2023-08-25",
+            Custom_Unique_ID: $("#contact-email").val(),
+            Data_Date: `${year}-${month}-${day}`,
             Name: $("#name").val(),
             Email: $("#contact-email").val(),
             Subject: $("#subject").val(),
@@ -716,161 +720,20 @@
     }
   }
 
-  // const formPublic = document.getElementById("public-form");
-  // if (formPublic) {
-  //   formPublic.addEventListener("submit", SendMailPublic);
-  // } else {
-  //   console.error("Element with ID 'public-form' not found.");
-  // }
-
-  //   window.addEventListener("DOMContentLoaded", (event) => {
-  //     const formPublic = document.getElementById("public-form");
-  //     if (formPublic) {
-  //       formPublic.addEventListener("submit", SendMailPublic);
-  //     }
-  // });
-
-  // async function SendMailPublic(e) {
-  //   e.preventDefault();
-
-  //   const emailVal = $("#contact-email").val();
-
-  //   if (isValidEmailAddress(emailVal)) {
-  //     const params = {
-  //       action: "SendMessage",
-  //       name: $("#name").val(),
-  //       email: $("#contact-email").val(),
-  //       subject: $("#subject").val(),
-  //     };
-
-  //     console.log(params, "params");
-
-  //     const data = {
-  //       token: "enygma_pwjnkkyn",
-  //       data: [params],
-  //     };
-
-  //     const settings = {
-  //       method: "POST",
-  //       headers: {
-  //         "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(data),
-  //     };
-
-  //     try {
-  //       const response = await fetch(
-  //         "https://api.enygma.id/v1/datasets/multipleinsert/5",
-  //         settings
-  //       );
-  //       if (response.ok) {
-  //         const responseObj = await response.json();
-  //         alert(responseObj.message);
-  //         location.reload();
-  //       } else {
-  //         throw new Error("Request failed");
-  //       }
-  //     } catch (error) {
-  //       const errorMessage =
-  //         error.message || "Unexpected error, please try again later.";
-  //       alert(errorMessage);
-  //     }
-  //   } else {
-  //     alert("Your email is not in a valid format");
-  //   }
-  // }
-
-  // document.addEventListener("DOMContentLoaded", function(e){
-  //   document.getElementById("private-form").addEventListener("submit", function(e) {
-  //     console.log("clicked:", this);
-  //   });
-  // });
-
-  // const formPrivate = document.getElementById("private-form");
-  // formPrivate.addEventListener("submit", SendMailPrivate);
-
-  // async function SendMailPrivate() {
-  //   // e.preventDefault();
-
-  //   const emailVal = $("#contact-email").val();
-
-  //   if (isValidEmailAddress(emailVal)) {
-  //     const params = {
-  //       action: "SendMessage",
-  //       name: $("#name-private").val(),
-  //       email: $("#email-private").val(),
-  //       subject: $("#quantity").val(),
-  //     };
-
-  //     $.ajax({
-  //       type: "POST",
-  //       url: "https://jsonplaceholder.typicode.com/users",
-  //       data: JSON.stringify(params),
-  //       contentType: "application/json; charset=utf-8",
-  //       dataType: "json",
-  //       success: function (data) {
-  //         console.log("User created:", data);
-  //       },
-  //       error: function (error) {
-  //         console.error("Error:", error);
-  //       },
-  //     });
-
-  //     // console.log(params, "params");
-
-  //     // const data = {
-  //     //   token: "enygma_pwjnkkyn",
-  //     //   data: [params],
-  //     // };
-
-  //     // const settings = {
-  //     //   method: "POST",
-  //     //   headers: {
-  //     //     "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
-  //     //     "Content-Type": "application/json",
-  //     //   },
-  //     //   body: JSON.stringify(data),
-  //     // };
-
-  //     // try {
-  //     //   const response = await fetch(
-  //     //     "https://api.enygma.id/v1/datasets/multipleinsert/5",
-  //     //     settings
-  //     //   );
-  //     //   if (response.ok) {
-  //     //     const responseObj = await response.json();
-  //     //     alert(responseObj.message);
-  //     //     location.reload();
-  //     //   } else {
-  //     //     throw new Error("Request failed");
-  //     //   }
-  //     // } catch (error) {
-  //     //   const errorMessage =
-  //     //     error.message || "Unexpected error, please try again later.";
-  //     //   alert(errorMessage);
-  //     // }
-  //   } else {
-  //     alert("Your email is not in a valid format");
-  //   }
-  // }
-
   async function SendMailPublic() {
-    // e.preventDefault();
-
     const emailVal = $("#contact-email").val();
 
     if (isValidEmailAddress(emailVal)) {
       const data = {
-        token: "enygma_pwjnkkyn",
+        token: "enygma_dlxag",
         data: [
           {
-            Custom_Unique_ID: "1",
-            Data_Date: "2023-08-25",
+            Custom_Unique_ID: $("#contact-email").val(),
+            Data_Date: `${year}-${month}-${day}`,
             Name: $("#name").val(),
             Email: $("#contact-email").val(),
             Subject: $("#subject").val(),
-            Message: $("#message").val(),
+            Quantity: $("#quantity").val(),
           },
         ],
       };
@@ -909,21 +772,19 @@
   }
 
   async function SendMailPrivate() {
-    // e.preventDefault();
-
     const emailVal = $("#contact-email").val();
 
     if (isValidEmailAddress(emailVal)) {
       const data = {
-        token: "enygma_pwjnkkyn",
+        token: "enygma_zrtcsoj",
         data: [
           {
-            Custom_Unique_ID: "1",
-            Data_Date: "2023-08-25",
+            Custom_Unique_ID: $("#contact-email").val(),
+            Data_Date: `${year}-${month}-${day}`,
             Name: $("#name").val(),
             Email: $("#contact-email").val(),
             Subject: $("#subject").val(),
-            Message: $("#message").val(),
+            Quantity: $("#quantity").val(),
           },
         ],
       };
