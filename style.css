@@ -2135,6 +2135,10 @@ footer ul {
     font-size: 30px;
   }
 
+  .full-width .section-wrapper {
+    padding-top: 170px;
+  }
+
   .site-content {
     overflow: hidden;
   }
@@ -2221,6 +2225,10 @@ footer ul {
   .text-slider-wrapper .text-slide {
     font-size: 16px;
     line-height: 32px;
+  }
+
+  .full-width .section-wrapper {
+    padding-top: 170px;
   }
 
   li.milestone {
