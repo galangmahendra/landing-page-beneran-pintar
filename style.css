@@ -2110,11 +2110,16 @@ footer ul {
     color: #fff;
     letter-spacing: 2px;
   }
+
+  .header-logo img {
+    width: 470px !important;
+    height: auto !important;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .header-logo img {
-    max-width: 140px;
+    max-width: 240px;
     width: auto !important;
     height: auto !important;
   }
@@ -2228,7 +2233,7 @@ footer ul {
   }
 
   .full-width .section-wrapper {
-    padding-top: 170px;
+    padding-top: 20px;
   }
 
   li.milestone {
