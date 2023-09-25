@@ -114,8 +114,6 @@ body pre {
   /* z-index: -1; */
 }
 
-
-
 /* ===================================
     1.1 Global Header Logo/Menu CSS
 ====================================== */
@@ -609,51 +607,50 @@ body .sm-clean li.current_page_item > a {
 }
 
 .scroll {
-	width: 60px;
-	height: 60px;
-	border: 2px solid #fff;
-	border-radius: 50%;
-	position: relative;
-	animation: down 1.5s infinite;
-	-webkit-animation: down 1.5s infinite;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  position: relative;
+  animation: down 1.5s infinite;
+  -webkit-animation: down 1.5s infinite;
   margin: auto;
-	&::before {
-		content: '';
-		position: absolute;
-		top: 15px;
-		left: 18px;
-		width: 18px;
-		height: 18px;
-		border-left: 2px solid #fff;
-  	border-bottom: 2px solid #fff;
-		transform: rotate(-45deg);
-	}
+  &::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 18px;
+    width: 18px;
+    height: 18px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg);
+  }
 }
 
 @keyframes down {
-	0% {
-		transform: translate(0);
-	}
-	20% {
-		transform: translateY(15px);
-	}
-	40% {
-		transform: translate(0);
-	}
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translateY(15px);
+  }
+  40% {
+    transform: translate(0);
+  }
 }
 
 @-webkit-keyframes down {
-	0% {
-		transform: translate(0);
-	}
-	20% {
-		transform: translateY(15px);
-	}
-	40% {
-		transform: translate(0);
-	}
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translateY(15px);
+  }
+  40% {
+    transform: translate(0);
+  }
 }
-
 
 /* ===================================
     4. Portfolio Section CSS
@@ -902,7 +899,8 @@ body .sm-clean li.current_page_item > a {
   opacity: 1;
 }
 
-a.pricing-button.animate-plus:after, .ajax-pricing.animate-plus {
+a.pricing-button.animate-plus:after,
+.ajax-pricing.animate-plus {
   opacity: 1;
 }
 
@@ -1452,6 +1450,7 @@ a.pricing-button.animate-plus:after, .ajax-pricing.animate-plus {
 
 .contact-form-private p {
   margin-bottom: 0 !important;
+  color: #fff;
 }
 
 .contact-form input[type="text"],
@@ -1472,7 +1471,6 @@ a.pricing-button.animate-plus:after, .ajax-pricing.animate-plus {
 
 .contact-form-public input[type="text"],
 .contact-form-public input[type="email"],
-.contact-form-public input[type="number"]
 .contact-form-public textarea {
   border: 0;
   font-size: 16px;
@@ -1487,9 +1485,36 @@ a.pricing-button.animate-plus:after, .ajax-pricing.animate-plus {
   border-bottom: 1px solid;
 }
 
+.contact-form-public input[type="number"] {
+  border: 0;
+  font-size: 16px;
+  background-color: transparent;
+  padding: 5px 0;
+  border-bottom: 1px solid;
+  color: #fff;
+  width: 100%;
+  padding: 5px 0;
+  line-height: 25px;
+  margin-bottom: 35px;
+  font-weight: 400;
+  text-indent: 10px;
+  appearance: none;
+}
+
+.contact-form-public input[type="number"]::-webkit-inner-spin-button,
+.contact-form-public input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+::-webkit-input-placeholder {
+  color: #fff;
+}
+
 .contact-form-private input[type="text"],
 .contact-form-private input[type="email"],
-.contact-form-private input[type="number"]
 .contact-form-private textarea {
   border: 0;
   font-size: 16px;
@@ -1502,6 +1527,30 @@ a.pricing-button.animate-plus:after, .ajax-pricing.animate-plus {
   text-indent: 10px;
   background-color: transparent;
   border-bottom: 1px solid;
+}
+
+.contact-form-private input[type="number"] {
+  border: 0;
+  font-size: 16px;
+  background-color: transparent;
+  padding: 5px 0;
+  border-bottom: 1px solid;
+  color: #fff;
+  width: 100%;
+  padding: 5px 0;
+  line-height: 25px;
+  margin-bottom: 35px;
+  font-weight: 400;
+  text-indent: 10px;
+  appearance: none;
+}
+
+.contact-form-private input[type="number"]::-webkit-inner-spin-button,
+.contact-form-private input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .contact-form textarea {
@@ -2183,7 +2232,7 @@ footer ul {
     float: none;
     margin-right: 0;
     margin-left: 0;
-    color: white ;
+    color: white;
   }
 
   .footer-mail {
