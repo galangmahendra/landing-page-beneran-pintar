@@ -63,6 +63,28 @@
     }
   });
 
+  // geolocation
+
+  var geo;
+
+  async function geoLocation() {
+    if (navigator.geolocation) {
+      await navigator.geolocation.getCurrentPosition(showPosition, error);
+    } else {
+    }
+  }
+  function error(err) {
+    console.log("err");
+  }
+  function showPosition(position) {
+    geo = position.coords.latitude + "," + position.coords.longitude;
+    if (geo) {
+    }
+    return geo;
+  }
+
+  geoLocation();
+
   $(window).scrollTop(1);
   $(window).scrollTop(0);
 
@@ -732,8 +754,10 @@
             Data_Date: `${year}-${month}-${day}`,
             Name: $("#name").val(),
             Email: $("#contact-email").val(),
+            Phone_Number: $("#phone-number").val(),
             Subject: $("#subject").val(),
-            Quantity: $("#quantity").val(),
+            Quantity: $("#quantity")?.val(),
+            Location: geo
           },
         ],
       };
@@ -742,7 +766,7 @@
       const settings = {
         method: "POST",
         headers: {
-          "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
+          "Authorization": "Bearer "+"XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
@@ -779,12 +803,14 @@
         token: "enygma_zrtcsoj",
         data: [
           {
-            Custom_Unique_ID: $("#contact-email").val(),
+            Custom_Unique_ID: $("#contact-email")?.val(),
             Data_Date: `${year}-${month}-${day}`,
-            Name: $("#name").val(),
-            Email: $("#contact-email").val(),
-            Subject: $("#subject").val(),
-            Quantity: $("#quantity").val(),
+            Name: $("#name")?.val(),
+            Email: $("#contact-email")?.val(),
+            Phone_Number: $("#phone-number").val(),
+            Subject: $("#subject")?.val(),
+            Quantity: $("#quantity")?.val(),
+            Location: geo,
           },
         ],
       };
@@ -793,7 +819,7 @@
       const settings = {
         method: "POST",
         headers: {
-          "x-token-api": "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
+          "Authorization": "Bearer "+"XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
