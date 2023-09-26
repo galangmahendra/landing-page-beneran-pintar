@@ -74,7 +74,7 @@
     }
   }
   function error(err) {
-    console.log("err");
+    console.log("err"); 
   }
   function showPosition(position) {
     geo = position.coords.latitude + "," + position.coords.longitude;
@@ -757,7 +757,7 @@
             Phone_Number: $("#phone-number").val(),
             Subject: $("#subject").val(),
             Quantity: $("#quantity")?.val(),
-            Location: geo
+            Location: geo,
           },
         ],
       };
@@ -766,7 +766,7 @@
       const settings = {
         method: "POST",
         headers: {
-          "Authorization": "Bearer "+"XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
+          Authorization: "Bearer " + "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
@@ -819,7 +819,7 @@
       const settings = {
         method: "POST",
         headers: {
-          "Authorization": "Bearer "+"XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
+          Authorization: "Bearer " + "XNiCnLZMrfiFtQmC7mYLhT3OtuYsdm7Y",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
